@@ -53,7 +53,7 @@ const ContactSection = ({ sectionRef, isVisible }: ContactSectionProps) => {
               </a>
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-secondary hover:bg-white/90 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto" asChild>
-              <a href="https://wa.me/996222308088?text=Добрый%20день!%20Хочу%20заказать%20пластиковые%20карты.%20Можете%20отправить%20цену%20и%20условия%20производства?" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/996222308088?text=Здравствуйте,%20узнал(а)%20о%20вас%20через%20сайт.%20Можете%20сделать%20просчет%20стоимости%20на%20карты?" target="_blank" rel="noopener noreferrer">
                 <Icon name="MessageSquare" className="mr-2" size={20} />
                 Написать в WhatsApp
               </a>
