@@ -13,7 +13,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 animate-fade-in">
           <div className="mb-6">
             <img 
-              src="https://cdn.poehali.dev/files/1767364301680.jpg" 
+              src="https://cdn.poehali.dev/files/IMG_20260107_195930_589.png" 
               alt="Infinity Cards Logo" 
               className="w-32 h-32 mx-auto object-contain"
             />
