@@ -177,15 +177,14 @@ const MainSections = ({ sectionRefs, visibleSections }: MainSectionsProps) => {
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mx-auto" style={{ maxWidth: '1400px' }}>
             {[
-              { name: 'Puma', logo: 'https://cdn.poehali.dev/files/1767366288661.jpg' },
-              { name: 'Anta Sports', logo: 'https://cdn.poehali.dev/files/1767365280673.jpg' },
               { name: 'Uniqum Sport', logo: 'https://cdn.poehali.dev/files/1767364890464.jpg' },
-              { name: 'Change Fitness', logo: 'https://cdn.poehali.dev/files/1767710776569.jpg' },
-              { name: 'Bimar', logo: 'https://cdn.poehali.dev/files/1767367879080.jpg' },
+              { name: 'Anta Sports', logo: 'https://cdn.poehali.dev/files/1767365280673.jpg' },
+              { name: 'Pulse Gym', logo: 'https://cdn.poehali.dev/files/1767365946130.jpg' },
+              { name: 'Hyatt Regency', logo: 'https://cdn.poehali.dev/files/Gemini_Generated_Image_xuoynnxuoynnxuoy.png' },
+              { name: 'Puma', logo: 'https://cdn.poehali.dev/files/1767366288661.jpg' },
               { name: 'Bishkek Petroleum', logo: 'https://cdn.poehali.dev/files/1767366417226.jpg' },
               { name: 'Bisport', logo: 'https://cdn.poehali.dev/files/1767366609198.jpg' },
-              { name: 'Pulse Gym', logo: 'https://cdn.poehali.dev/files/1767365946130.jpg' },
-              { name: 'Hyatt Regency', logo: 'https://cdn.poehali.dev/files/Gemini_Generated_Image_xuoynnxuoynnxuoy.png' }
+              { name: 'Bimar', logo: 'https://cdn.poehali.dev/files/1767367879080.jpg' }
             ].map((client, index) => (
               <div key={index} className="bg-white backdrop-blur-sm rounded-lg flex items-center justify-center hover-scale border border-border shadow-sm min-h-[100px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden">
                 <div className="text-center w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6">
