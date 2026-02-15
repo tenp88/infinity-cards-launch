@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Icon from "@/components/ui/icon";
+import func2url from "../../backend/func2url.json";
 
 interface OrderFormDialogProps {
   open: boolean;
@@ -54,12 +55,35 @@ const OrderFormDialog = ({ open, onOpenChange }: OrderFormDialogProps) => {
     if (!isValid) return;
 
     setIsSubmitting(true);
-    setIsSuccess(true);
-    setIsSubmitting(false);
 
-    setTimeout(() => {
-      resetForm();
-    }, 2000);
+    try {
+      const response = await fetch(func2url["save-order"], {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          cardType,
+          printRun,
+          phone,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка при отправке заявки");
+      }
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        resetForm();
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert("Произошла ошибка при отправке заявки. Попробуйте позже.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
