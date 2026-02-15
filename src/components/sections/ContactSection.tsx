@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import OrderFormDialog from "@/components/OrderFormDialog";
 
 interface ContactSectionProps {
   sectionRef: (el: HTMLElement | null) => void;
@@ -8,6 +10,8 @@ interface ContactSectionProps {
 }
 
 const ContactSection = ({ sectionRef, isVisible }: ContactSectionProps) => {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <section 
       ref={sectionRef}
@@ -46,11 +50,13 @@ const ContactSection = ({ sectionRef, isVisible }: ContactSectionProps) => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto" asChild>
-              <a href="https://t.me/infinity_cards_tg" target="_blank" rel="noopener noreferrer">
-                <Icon name="Send" className="mr-2" size={20} />
-                Написать в Telegram
-              </a>
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-white text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto"
+              onClick={() => setFormOpen(true)}
+            >
+              <Icon name="FileText" className="mr-2" size={20} />
+              Оставить заявку
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-secondary hover:bg-white/90 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 w-full sm:w-auto" asChild>
               <a href="https://wa.me/996222308088?text=Здравствуйте,%20узнал(а)%20о%20вас%20через%20сайт.%20Можете%20сделать%20просчет%20стоимости%20на%20карты?" target="_blank" rel="noopener noreferrer">
@@ -61,6 +67,8 @@ const ContactSection = ({ sectionRef, isVisible }: ContactSectionProps) => {
           </div>
         </div>
       </div>
+
+      <OrderFormDialog open={formOpen} onOpenChange={setFormOpen} />
     </section>
   );
 };

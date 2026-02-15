@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import OrderFormDialog from "@/components/OrderFormDialog";
 
 interface MainSectionsProps {
   sectionRefs: React.MutableRefObject<(HTMLElement | null)[]>;
@@ -8,6 +10,7 @@ interface MainSectionsProps {
 }
 
 const MainSections = ({ sectionRefs, visibleSections }: MainSectionsProps) => {
+  const [formOpen, setFormOpen] = useState(false);
   return (
     <>
       {/* Comparison Section */}
@@ -203,11 +206,13 @@ const MainSections = ({ sectionRefs, visibleSections }: MainSectionsProps) => {
           </div>
           
           <div className="text-center mt-8 sm:mt-12 px-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-lg w-full sm:w-auto" asChild>
-              <a href="https://wa.me/996222308088?text=Здравствуйте%2C%20узнал(а)%20о%20вас%20через%20сайт.%20Можете%20сделать%20просчет%20стоимости%20на%20карты%3F" target="_blank" rel="noopener noreferrer">
-                <Icon name="Calculator" className="mr-2" size={22} />
-                Рассчитать стоимость
-              </a>
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-white text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-lg w-full sm:w-auto"
+              onClick={() => setFormOpen(true)}
+            >
+              <Icon name="Calculator" className="mr-2" size={22} />
+              Рассчитать стоимость
             </Button>
           </div>
         </div>
@@ -419,6 +424,8 @@ const MainSections = ({ sectionRefs, visibleSections }: MainSectionsProps) => {
           </div>
         </div>
       </section>
+
+      <OrderFormDialog open={formOpen} onOpenChange={setFormOpen} />
     </>
   );
 };

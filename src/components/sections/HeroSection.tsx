@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import OrderFormDialog from "@/components/OrderFormDialog";
 
 const HeroSection = () => {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary/95 to-primary/20 text-white">
       <div className="absolute inset-0 opacity-10">
@@ -52,11 +56,13 @@ const HeroSection = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4 px-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6" asChild>
-              <a href="https://wa.me/996222308088?text=Здравствуйте%2C%20узнал(а)%20о%20вас%20через%20сайт.%20Можете%20сделать%20просчет%20стоимости%20на%20карты%3F" target="_blank" rel="noopener noreferrer">
-                <Icon name="Calculator" className="mr-2" size={20} />
-                Рассчитать стоимость
-              </a>
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-white text-lg px-8 py-6"
+              onClick={() => setFormOpen(true)}
+            >
+              <Icon name="Calculator" className="mr-2" size={20} />
+              Рассчитать стоимость
             </Button>
             <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6" asChild>
               <a href="tel:+996222308088">
@@ -67,6 +73,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      <OrderFormDialog open={formOpen} onOpenChange={setFormOpen} />
     </section>
   );
 };
