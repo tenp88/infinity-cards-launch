@@ -54,17 +54,12 @@ const OrderFormDialog = ({ open, onOpenChange }: OrderFormDialogProps) => {
     if (!isValid) return;
 
     setIsSubmitting(true);
-
-    const message = `Новая заявка с сайта:\n\nИмя: ${name}\nТип карты: ${cardType}\nТираж: ${printRun}\nТелефон: ${phone}`;
-    const waUrl = `https://wa.me/996222308088?text=${encodeURIComponent(message)}`;
-
-    setIsSubmitting(false);
     setIsSuccess(true);
+    setIsSubmitting(false);
 
     setTimeout(() => {
-      window.open(waUrl, "_blank");
       resetForm();
-    }, 1500);
+    }, 2000);
   };
 
   const resetForm = () => {
@@ -95,7 +90,7 @@ const OrderFormDialog = ({ open, onOpenChange }: OrderFormDialogProps) => {
             </div>
             <div className="text-center">
               <p className="text-lg font-semibold">Заявка отправлена!</p>
-              <p className="text-sm text-muted-foreground mt-1">Переводим вас в WhatsApp...</p>
+              <p className="text-sm text-muted-foreground mt-1">Мы свяжемся с вами в ближайшее время</p>
             </div>
           </div>
         ) : (
