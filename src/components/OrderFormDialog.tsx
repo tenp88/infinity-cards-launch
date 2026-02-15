@@ -74,6 +74,11 @@ const OrderFormDialog = ({ open, onOpenChange }: OrderFormDialogProps) => {
         throw new Error("Ошибка при отправке заявки");
       }
 
+      const fbq = (window as unknown as { fbq?: (action: string, event: string) => void }).fbq;
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+
       setIsSuccess(true);
       setTimeout(() => {
         resetForm();
