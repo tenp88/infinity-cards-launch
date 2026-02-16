@@ -71,17 +71,21 @@ def handler(event, context):
             
             try:
                 url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-                data = urllib.parse.urlencode({
+                payload = json.dumps({
                     'chat_id': chat_id,
-                    'text': message,
-                    'parse_mode': 'HTML'
+                    'text': message
                 }).encode('utf-8')
                 
-                req = urllib.request.Request(url, data=data, method='POST')
+                req = urllib.request.Request(url, data=payload, method='POST')
+                req.add_header('Content-Type', 'application/json')
                 response = urllib.request.urlopen(req)
                 print(f"Telegram sent: {response.status}")
             except Exception as e:
-                print(f"Telegram error: {str(e)}")
+                try:
+                    error_body = e.read().decode('utf-8') if hasattr(e, 'read') else ''
+                    print(f"Telegram error: {str(e)} | Body: {error_body}")
+                except:
+                    print(f"Telegram error: {str(e)}")
         
         return {
             'statusCode': 200,
