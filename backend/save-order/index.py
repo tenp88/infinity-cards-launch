@@ -59,9 +59,15 @@ def handler(event, context):
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
         chat_id = os.environ.get('TELEGRAM_CHAT_ID')
         
-        print(f"Telegram tokens - bot: {bool(bot_token)}, chat: {bool(chat_id)}")
+        print(f"Telegram debug - bot_token_len: {len(bot_token) if bot_token else 0}, chat_id: '{chat_id}'")
         
         if bot_token and chat_id:
+            chat_id_clean = chat_id.strip()
+            try:
+                chat_id_int = int(chat_id_clean)
+            except ValueError:
+                chat_id_int = chat_id_clean
+            
             message = f"""🆕 Новая заявка на расчет!
 
 👤 Имя: {name}
@@ -70,9 +76,9 @@ def handler(event, context):
 📦 Тираж: {print_run} шт"""
             
             try:
-                url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+                url = f"https://api.telegram.org/bot{bot_token.strip()}/sendMessage"
                 payload = json.dumps({
-                    'chat_id': chat_id,
+                    'chat_id': chat_id_int,
                     'text': message
                 }).encode('utf-8')
                 
