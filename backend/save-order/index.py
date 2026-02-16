@@ -59,6 +59,8 @@ def handler(event, context):
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
         chat_id = os.environ.get('TELEGRAM_CHAT_ID')
         
+        print(f"Telegram tokens - bot: {bool(bot_token)}, chat: {bool(chat_id)}")
+        
         if bot_token and chat_id:
             message = f"""🆕 Новая заявка на расчет!
 
@@ -76,9 +78,10 @@ def handler(event, context):
                 }).encode('utf-8')
                 
                 req = urllib.request.Request(url, data=data, method='POST')
-                urllib.request.urlopen(req)
-            except:
-                pass
+                response = urllib.request.urlopen(req)
+                print(f"Telegram sent: {response.status}")
+            except Exception as e:
+                print(f"Telegram error: {str(e)}")
         
         return {
             'statusCode': 200,
