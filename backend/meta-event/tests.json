@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Send Lead event",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "event_name": "Lead",
+        "user_data": {
+          "email": "test@example.com",
+          "phone": "+79991234567"
+        },
+        "custom_data": {
+          "service": "Дизайн интерьера"
+        },
+        "event_source_url": "https://example.com"
+      },
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    }
+  ]
+}

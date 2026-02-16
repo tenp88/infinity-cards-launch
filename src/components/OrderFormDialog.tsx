@@ -79,6 +79,25 @@ const OrderFormDialog = ({ open, onOpenChange }: OrderFormDialogProps) => {
         fbq('track', 'Lead');
       }
 
+      await fetch(func2url["meta-event"], {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_name: "Lead",
+          user_data: {
+            phone,
+            first_name: name
+          },
+          custom_data: {
+            card_type: cardType,
+            print_run: printRun
+          },
+          event_source_url: window.location.href
+        }),
+      }).catch(console.error);
+
       setIsSuccess(true);
       setTimeout(() => {
         resetForm();
