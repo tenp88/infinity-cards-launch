@@ -34,14 +34,14 @@ def handler(event: dict, context) -> dict:
     custom_data = body.get('custom_data', {})
     event_source_url = body.get('event_source_url', '')
     
-    access_token = os.environ.get('META_ACCESS_TOKEN')
-    pixel_id = os.environ.get('META_PIXEL_ID')
+    access_token = os.environ.get('META_CAPI_TOKEN') or os.environ.get('META_ACCESS_TOKEN')
+    pixel_id = os.environ.get('META_PIXEL_ID', '1232225342439909')
     
-    if not access_token or not pixel_id:
+    if not access_token:
         return {
             'statusCode': 500,
             'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'META_ACCESS_TOKEN or META_PIXEL_ID not configured'})
+            'body': json.dumps({'error': 'META_CAPI_TOKEN not configured'})
         }
     
     hashed_user_data = {}
